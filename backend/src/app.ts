@@ -20,6 +20,23 @@ app.use(
 app.use(express.json({ limit: '1mb' }));
 app.use(cookieParser());
 
+// Redirect browser visitors who open port 5000 directly to the Next.js Frontend on port 3000
+app.get('/', (req, res) => {
+  const accept = req.headers.accept || '';
+  if (accept.includes('text/html')) {
+    const hostHeader = req.headers.host || 'localhost';
+    const hostname = hostHeader.split(':')[0];
+    res.redirect(`http://${hostname}:3000`);
+    return;
+  }
+  res.status(200).json({
+    success: true,
+    service: 'pulsemeet-backend',
+    message: 'PulseMeet API Server is running. Open http://localhost:3000 for the web application.',
+    frontendUrl: 'http://localhost:3000',
+  });
+});
+
 // Health Check Endpoint
 app.get('/api/health', (_req, res) => {
   res.status(200).json({
