@@ -1,0 +1,195 @@
+.toolbarWrapper {
+  width: 100%;
+  min-height: 82px;
+  padding: var(--space-3) var(--space-6);
+  background: rgba(12, 16, 26, 0.92);
+  backdrop-filter: blur(16px);
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  z-index: 30;
+}
+
+.leftSection {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-width: 220px;
+}
+
+.meetingCodeBox {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 7px 12px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+}
+
+.codeLabel {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: 0.03em;
+}
+
+.copyBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  border-radius: var(--radius-sm);
+  font-size: 0.76rem;
+  font-weight: 600;
+  background: var(--accent-primary-subtle);
+  color: #a5b4fc;
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  transition: all var(--transition-fast);
+}
+
+.copyBtn:hover {
+  background: rgba(99, 102, 241, 0.25);
+  color: #ffffff;
+}
+
+.copyBtnSuccess {
+  background: var(--status-success-subtle);
+  color: #34d399;
+  border-color: rgba(16, 185, 129, 0.35);
+}
+
+.centerControls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+}
+
+.controlBtn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  min-width: 78px;
+  height: 56px;
+  padding: 0 14px;
+  border-radius: var(--radius-md);
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-default);
+  color: var(--text-primary);
+  transition: all var(--transition-fast);
+}
+
+.controlBtn:hover {
+  background: var(--bg-surface-hover);
+  transform: translateY(-1px);
+}
+
+.controlBtnDanger {
+  background: rgba(239, 68, 68, 0.18);
+  border-color: rgba(239, 68, 68, 0.45);
+  color: #fca5a5;
+}
+
+.controlBtnDanger:hover {
+  background: rgba(239, 68, 68, 0.28);
+  color: #ffffff;
+}
+
+.controlBtnActive {
+  background: rgba(14, 165, 233, 0.2);
+  border-color: rgba(56, 189, 248, 0.55);
+  color: #7dd3fc;
+  box-shadow: 0 0 18px rgba(56, 189, 248, 0.22);
+}
+
+.controlBtnActive:hover {
+  background: rgba(14, 165, 233, 0.3);
+}
+
+.btnLabel {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.rightSection {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-3);
+  min-width: 220px;
+}
+
+.participantsBtn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  height: 46px;
+  padding: 0 15px;
+  border-radius: var(--radius-md);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all var(--transition-fast);
+}
+
+.participantsBtn:hover {
+  background: var(--bg-surface-elevated);
+}
+
+.participantsBtnOpen {
+  border-color: var(--accent-primary);
+  background: var(--accent-primary-subtle);
+  color: #c7d2fe;
+}
+
+.countBadge {
+  padding: 2px 7px;
+  border-radius: var(--radius-full);
+  background: var(--accent-primary);
+  color: #ffffff;
+  font-size: 0.74rem;
+  font-weight: 700;
+}
+
+.leaveBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  height: 46px;
+  padding: 0 20px;
+  border-radius: var(--radius-md);
+  background: var(--status-danger);
+  color: #ffffff;
+  font-size: 0.875rem;
+  font-weight: 700;
+  box-shadow: 0 4px 14px rgba(239, 68, 68, 0.35);
+  transition: all var(--transition-fast);
+}
+
+.leaveBtn:hover {
+  background: var(--status-danger-hover);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 900px) {
+  .toolbarWrapper {
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: var(--space-3);
+  }
+  .leftSection,
+  .rightSection {
+    min-width: auto;
+  }
+}
+

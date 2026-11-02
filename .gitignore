@@ -1,0 +1,32 @@
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Next.js build output
+frontend/.next/
+frontend/out/
+
+# Backend build output
+backend/dist/
+
+# Environment variables (Never commit secrets)
+.env
+.env.*
+!.env.example
+backend/.env
+backend/.env.*
+!backend/.env.example
+backend/certs/
+frontend/.env
+frontend/.env.*
+!frontend/.env.example
+
+# Logs and OS files
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db
+.vercel
+*.tsbuildinfo
+next-env.d.ts
+

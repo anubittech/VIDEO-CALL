@@ -1,0 +1,40 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum MeetingStatus {
+  ACTIVE
+  ENDED
+}
+
+model User {
+  id           String    @id @default(uuid())
+  name         String
+  email        String    @unique
+  passwordHash String
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  meetings     Meeting[] @relation("HostMeetings")
+
+  @@index([email])
+}
+
+model Meeting {
+  id        String        @id @default(uuid())
+  meetingId String        @unique
+  title     String
+  hostId    String
+  host      User          @relation("HostMeetings", fields: [hostId], references: [id], onDelete: Cascade)
+  status    MeetingStatus @default(ACTIVE)
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+
+  @@index([meetingId])
+  @@index([hostId])
+}
+
