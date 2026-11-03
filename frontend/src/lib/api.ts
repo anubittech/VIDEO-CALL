@@ -5,16 +5,31 @@ const TOKEN_STORAGE_KEY = 'pulsemeet_auth_token';
  * the user is accessing the application (localhost, LAN IP 192.168.x.x, or HTTPS gateway).
  */
 export const getApiBaseUrl = (): string => {
+  const configuredUrl = process.env.NEXT_PUBLIC_API_URL;
+
+  // 1. Production deployment (e.g., Vercel frontend talking to Render/Railway backend)
+  if (
+    configuredUrl &&
+    !configuredUrl.includes('localhost') &&
+    !configuredUrl.includes('127.0.0.1')
+  ) {
+    return configuredUrl.replace(/\/$/, '');
+  }
+
+  // 2. Local / LAN development
   if (typeof window !== 'undefined') {
-    const { protocol, hostname, origin } = window.location;
-    // When accessed over HTTPS (e.g. mobile HTTPS gateway on port 3443 or tunnel), use same origin
-    if (protocol === 'https:') {
+    const { protocol, hostname, port, origin } = window.location;
+    // Local HTTPS Mobile Gateway on port 3443
+    if (protocol === 'https:' && port === '3443') {
       return origin;
     }
-    // When accessed over HTTP via localhost or LAN IP (e.g. 192.168.20.12), connect to backend port 5000 on same host
-    return `http://${hostname}:5000`;
+    // Local HTTP via localhost or LAN IP (e.g., 192.168.20.12)
+    if (protocol === 'http:') {
+      return `http://${hostname}:5000`;
+    }
   }
-  return process.env.NEXT_PUBLIC_API_URL || 'http://192.168.20.12:5000';
+
+  return configuredUrl || 'http://localhost:5000';
 };
 
 export const API_BASE_URL = getApiBaseUrl();
